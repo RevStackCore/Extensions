@@ -2,15 +2,16 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace RevStackCore.Utilities
+namespace RevStackCore.Extensions
 {
 	public static partial class Extensions
 	{
 		/// <summary>
+		/// Returns Last N chars.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="tail_length"></param>
-		/// <returns></returns>
+		/// <returns>The chars.</returns>
+		/// <param name="source">Source.</param>
+		/// <param name="tailLength">Tail length.</param>
 		public static string LastChars(this string source, int tailLength)
 		{
 			if (tailLength >= source.Length)
@@ -18,16 +19,43 @@ namespace RevStackCore.Utilities
 			return source.Substring(source.Length - tailLength);
 		}
 
+		/// <summary>
+		/// Firsts the first N chars.
+		/// </summary>
+		/// <returns>The chars.</returns>
+		/// <param name="source">Source.</param>
+		/// <param name="startLength">Start length.</param>
 		public static string FirstChars(this string source, int startLength)
 		{
 			return source.Substring(0, startLength);
 		}
 
+		/// <summary>
+		/// Trims the first char.
+		/// </summary>
+		/// <returns>The first char.</returns>
+		/// <param name="src">Source.</param>
 		public static string TrimFirstChar(this string src)
 		{
 			return src.Substring(1);
 		}
 
+		/// <summary>
+		/// Trims the first N Chars.
+		/// </summary>
+		/// <returns>The first NC hars.</returns>
+		/// <param name="src">Source.</param>
+		/// <param name="n">N.</param>
+		public static string TrimFirstNChars(this string src, int n)
+		{
+			return src.Substring(0, n);
+		}
+
+		/// <summary>
+		/// Trims the last char.
+		/// </summary>
+		/// <returns>The last char.</returns>
+		/// <param name="src">Source.</param>
 		public static string TrimLastChar(this string src)
 		{
 			if (string.IsNullOrEmpty(src))
@@ -40,6 +68,23 @@ namespace RevStackCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Trims the last N chars.
+		/// </summary>
+		/// <returns>The last NC hars.</returns>
+		/// <param name="src">Source.</param>
+		/// <param name="n">N.</param>
+		public static string TrimLastNChars(this string src, int n)
+		{
+			return src.Substring(src.Length - n);
+		}
+
+		/// <summary>
+		/// Ins the string.
+		/// </summary>
+		/// <returns><c>true</c>, if string was ined, <c>false</c> otherwise.</returns>
+		/// <param name="source">Source.</param>
+		/// <param name="value">Value.</param>
 		public static bool InString(this string source, string value)
 		{
 			var index = source.IndexOf(value);
@@ -47,11 +92,12 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
+		/// Concatenate the specified source, str and separator.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="str"></param>
-		/// <param name="separator"></param>
-		/// <returns></returns>
+		/// <returns>The concatenate.</returns>
+		/// <param name="source">Source.</param>
+		/// <param name="str">String.</param>
+		/// <param name="separator">Separator.</param>
 		public static string Concatenate(this string source, string str, string separator)
 		{
 			if (source.Length > 0)
@@ -66,19 +112,21 @@ namespace RevStackCore.Utilities
 			return source;
 		}
 
-		/// <summary>
-		/// </summary>
-		/// <param name="source"></param>
-		/// <returns></returns>
+	    /// <summary>
+	    /// Tos the title case.
+	    /// </summary>
+	    /// <returns>The title case.</returns>
+	    /// <param name="source">Source.</param>
 		public static string ToTitleCase(this string source)
 		{
 			return source.ToProperCase();
 		}
 
 		/// <summary>
+		/// Tos the proper case.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <returns></returns>
+		/// <returns>The proper case.</returns>
+		/// <param name="source">Source.</param>
 		public static string ToProperCase(this string source)
 		{
 			const string pattern = @"(?<=\w)(?=[A-Z])";
@@ -88,9 +136,10 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
+		/// Tos the camel case.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <returns></returns>
+		/// <returns>The camel case.</returns>
+		/// <param name="source">Source.</param>
 		public static string ToCamelCase(this string source)
 		{
 			source = source.ToTitleCase();
@@ -98,29 +147,31 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
+		/// Tos the wrapped in quotes.
 		/// </summary>
-		/// <param name="value"></param>
-		/// <returns></returns>
+		/// <returns>The wrapped in quotes.</returns>
+		/// <param name="value">Value.</param>
 		public static string ToWrappedInQuotes(this string value)
 		{
 			return "\"" + value + "\"";
 		}
 
 		/// <summary>
+		/// Tos the wrapped in single quotes.
 		/// </summary>
-		/// <param name="value"></param>
-		/// <returns></returns>
+		/// <returns>The wrapped in single quotes.</returns>
+		/// <param name="value">Value.</param>
 		public static string ToWrappedInSingleQuotes(this string value)
 		{
 			return "'" + value + "'";
 		}
 
 		/// <summary>
-		///     Returns the first part of a split string
+		/// Tos the string first part.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="strSeparator"></param>
-		/// <returns></returns>
+		/// <returns>The string first part.</returns>
+		/// <param name="source">Source.</param>
+		/// <param name="chrSeparator">Chr separator.</param>
 		public static string ToStringFirstPart(this string source, char chrSeparator)
 		{
 			var parts = source.Split(chrSeparator);
@@ -141,19 +192,20 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
+		/// Tos the phrase case.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <returns></returns>
+		/// <returns>The phrase case.</returns>
+		/// <param name="source">Source.</param>
 		public static string ToPhraseCase(this string source)
 		{
 			return Regex.Replace(source, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToLower(m.Value[1]));
 		}
 
 		/// <summary>
-		/// 
+		/// Tos the default select value.
 		/// </summary>
-		/// <param name="source"></param>
-		/// <returns></returns>
+		/// <returns>The default select value.</returns>
+		/// <param name="source">Source.</param>
 		public static string ToDefaultSelectValue(this string source)
 		{
 			if (source.ToLower() == "select")
@@ -164,10 +216,10 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
-		/// 
+		/// Tos the possessive case.
 		/// </summary>
-		/// <param name="src"></param>
-		/// <returns></returns>
+		/// <returns>The possessive case.</returns>
+		/// <param name="src">Source.</param>
 		public static string ToPossessiveCase(this string src)
 		{
 			if (src.LastChars(1).ToLower() == "s") return src + "'";
@@ -175,26 +227,31 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
-		/// 
+		/// Tos the html link.
 		/// </summary>
-		/// <param name="src"></param>
-		/// <returns></returns>
+		/// <returns>The html link.</returns>
+		/// <param name="src">Source.</param>
 		public static string ToHtmlLink(this string src)
 		{
 			return "<a href =\"" + src + "\">" + src + "</a>";
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="src"></param>
-		/// <param name="label"></param>
-		/// <returns></returns>
+	    /// <summary>
+	    /// Tos the html link.
+	    /// </summary>
+	    /// <returns>The html link.</returns>
+	    /// <param name="src">Source.</param>
+	    /// <param name="label">Label.</param>
 		public static string ToHtmlLink(this string src, string label)
 		{
 			return "<a href =\"" + src + "\">" + label + "</a>";
 		}
 
+		/// <summary>
+		/// Tos the ratio value.
+		/// </summary>
+		/// <returns>The ratio value.</returns>
+		/// <param name="src">Source.</param>
 		public static decimal ToRatioValue(this decimal src)
 		{
 			if (src > 1)
@@ -204,6 +261,11 @@ namespace RevStackCore.Utilities
 			return src;
 		}
 
+		/// <summary>
+		/// Tos the percentage value.
+		/// </summary>
+		/// <returns>The percentage value.</returns>
+		/// <param name="src">Source.</param>
 		public static decimal ToPercentageValue(this decimal src)
 		{
 			if (src < 1)
@@ -213,12 +275,22 @@ namespace RevStackCore.Utilities
 			return src;
 		}
 
+		/// <summary>
+		/// Tos the html line break.
+		/// </summary>
+		/// <returns>The html line break.</returns>
+		/// <param name="src">Source.</param>
 		public static string ToHtmlLineBreak(this string src)
 		{
 			src = src.Replace(Environment.NewLine, "<br>");
 			return src;
 		}
 
+		/// <summary>
+		/// Tos the name of the month.
+		/// </summary>
+		/// <returns>The month name.</returns>
+		/// <param name="src">Source.</param>
 		public static string ToMonthName(this int src)
 		{
 			string month = "";

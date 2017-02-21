@@ -7,12 +7,14 @@ namespace RevStackCore.Extensions
 	public static partial class Extensions
 	{
 		/// <summary>
-		/// Uses EqualityComparer<T>.Default as an equality comparison for generics not constrained by a reference type
+		/// Compare the specified src, id and value.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		/// <returns></returns>
+		/// <returns>The compare.</returns>
+		/// <param name="src">Source.</param>
+		/// <param name="id">Identifier.</param>
+		/// <param name="value">Value.</param>
+		/// <typeparam name="TSource">The 1st type parameter.</typeparam>
+		/// <typeparam name="TKey">The 2nd type parameter.</typeparam>
 		public static bool Compare<TSource, TKey>(this TSource src, TKey id, TKey value)
 		{
 			return EqualityComparer<TKey>.Default.Equals(id, value);

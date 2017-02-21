@@ -4,16 +4,16 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Reflection;
 
-namespace RevStackCore.Utilities
+namespace RevStackCore.Extensions
 {
 	public static partial class Extensions
 	{
 		/// <summary>
-		/// iterates model properties to output a document string body
+		/// Tos the document string.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="model"></param>
-		/// <returns></returns>
+		/// <returns>The document string.</returns>
+		/// <param name="entity">Entity.</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public static string ToDocumentString<T>(this T entity)
 		{
 
@@ -99,11 +99,11 @@ namespace RevStackCore.Utilities
 		}
 
 		/// <summary>
-		/// 
+		/// Strings the builder append.
 		/// </summary>
-		/// <param name="instance"></param>
-		/// <param name="arg"></param>
-		/// <returns></returns>
+		/// <returns>The builder append.</returns>
+		/// <param name="instance">Instance.</param>
+		/// <param name="arg">Argument.</param>
 		static Expression StringBuilderAppend(Expression instance, Expression arg)
 		{
 			var method = typeof(StringBuilder).GetTypeInfo().GetMethod("Append",new Type[] { arg.Type });

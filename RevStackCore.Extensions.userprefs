@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="README.md">
+  <MonoDevelop.Ide.Workbench ActiveDocument="package.json">
     <Files>
-      <File FileName="README.md" Line="3" Column="145" />
+      <File FileName="RevStackCore.Extensions/RevStackCore.Extensions.csproj" Line="6" Column="43" />
+      <File FileName="package.json" Line="2" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

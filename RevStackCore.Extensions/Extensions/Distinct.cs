@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RevStackCore.Utilities
+namespace RevStackCore.Extensions
 {
 	public static partial class Extensions
 	{
+		/// <summary>
+		/// Distincts the by.
+		/// </summary>
+		/// <returns>The by.</returns>
+		/// <param name="source">Source.</param>
+		/// <param name="keySelector">Key selector.</param>
+		/// <typeparam name="TSource">The 1st type parameter.</typeparam>
+		/// <typeparam name="TKey">The 2nd type parameter.</typeparam>
 		public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 		{
 			return source.DistinctBy(keySelector, null);
