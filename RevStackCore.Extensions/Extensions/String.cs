@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace RevStackCore.Extensions
@@ -14,6 +13,8 @@ namespace RevStackCore.Extensions
 		/// <param name="tailLength">Tail length.</param>
 		public static string LastChars(this string source, int tailLength)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			if (tailLength >= source.Length)
 				return source;
 			return source.Substring(source.Length - tailLength);
@@ -27,6 +28,8 @@ namespace RevStackCore.Extensions
 		/// <param name="startLength">Start length.</param>
 		public static string FirstChars(this string source, int startLength)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			return source.Substring(0, startLength);
 		}
 
@@ -37,6 +40,8 @@ namespace RevStackCore.Extensions
 		/// <param name="src">Source.</param>
 		public static string TrimFirstChar(this string src)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			return src.Substring(1);
 		}
 
@@ -48,6 +53,8 @@ namespace RevStackCore.Extensions
 		/// <param name="n">N.</param>
 		public static string TrimFirstNChars(this string src, int n)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			return src.Substring(0, n);
 		}
 
@@ -76,6 +83,8 @@ namespace RevStackCore.Extensions
 		/// <param name="n">N.</param>
 		public static string TrimLastNChars(this string src, int n)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			return src.Substring(src.Length - n);
 		}
 
@@ -87,6 +96,8 @@ namespace RevStackCore.Extensions
 		/// <param name="value">Value.</param>
 		public static bool InString(this string source, string value)
 		{
+			if (string.IsNullOrEmpty(source))
+				return false;
 			var index = source.IndexOf(value);
 			return (index > -1);
 		}
@@ -100,6 +111,8 @@ namespace RevStackCore.Extensions
 		/// <param name="separator">Separator.</param>
 		public static string Concatenate(this string source, string str, string separator)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			if (source.Length > 0)
 			{
 				source = source + separator + str;
@@ -112,13 +125,15 @@ namespace RevStackCore.Extensions
 			return source;
 		}
 
-	    /// <summary>
-	    /// Tos the title case.
-	    /// </summary>
-	    /// <returns>The title case.</returns>
-	    /// <param name="source">Source.</param>
+		/// <summary>
+		/// Tos the title case.
+		/// </summary>
+		/// <returns>The title case.</returns>
+		/// <param name="source">Source.</param>
 		public static string ToTitleCase(this string source)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			return source.ToProperCase();
 		}
 
@@ -129,6 +144,8 @@ namespace RevStackCore.Extensions
 		/// <param name="source">Source.</param>
 		public static string ToProperCase(this string source)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			const string pattern = @"(?<=\w)(?=[A-Z])";
 			var result = Regex.Replace(source, pattern,
 				" ", RegexOptions.None);
@@ -142,6 +159,8 @@ namespace RevStackCore.Extensions
 		/// <param name="source">Source.</param>
 		public static string ToCamelCase(this string source)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			source = source.ToTitleCase();
 			return source.Substring(0, 1).ToLower() + source.Substring(1);
 		}
@@ -151,9 +170,11 @@ namespace RevStackCore.Extensions
 		/// </summary>
 		/// <returns>The wrapped in quotes.</returns>
 		/// <param name="value">Value.</param>
-		public static string ToWrappedInQuotes(this string value)
+		public static string ToWrappedInQuotes(this string source)
 		{
-			return "\"" + value + "\"";
+			if (string.IsNullOrEmpty(source))
+				return "";
+			return "\"" + source + "\"";
 		}
 
 		/// <summary>
@@ -161,9 +182,11 @@ namespace RevStackCore.Extensions
 		/// </summary>
 		/// <returns>The wrapped in single quotes.</returns>
 		/// <param name="value">Value.</param>
-		public static string ToWrappedInSingleQuotes(this string value)
+		public static string ToWrappedInSingleQuotes(this string source)
 		{
-			return "'" + value + "'";
+			if (string.IsNullOrEmpty(source))
+				return "";
+			return "'" + source + "'";
 		}
 
 		/// <summary>
@@ -174,6 +197,8 @@ namespace RevStackCore.Extensions
 		/// <param name="chrSeparator">Chr separator.</param>
 		public static string ToStringFirstPart(this string source, char chrSeparator)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			var parts = source.Split(chrSeparator);
 			return parts[0];
 		}
@@ -186,6 +211,8 @@ namespace RevStackCore.Extensions
 		/// <returns></returns>
 		public static string ToStringLastPart(this string source, char chrSeparator)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			var parts = source.Split(chrSeparator);
 			var length = parts.Length;
 			return parts[length - 1];
@@ -198,6 +225,8 @@ namespace RevStackCore.Extensions
 		/// <param name="source">Source.</param>
 		public static string ToPhraseCase(this string source)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			return Regex.Replace(source, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToLower(m.Value[1]));
 		}
 
@@ -208,6 +237,8 @@ namespace RevStackCore.Extensions
 		/// <param name="source">Source.</param>
 		public static string ToDefaultSelectValue(this string source)
 		{
+			if (string.IsNullOrEmpty(source))
+				return "";
 			if (source.ToLower() == "select")
 			{
 				return null;
@@ -222,6 +253,8 @@ namespace RevStackCore.Extensions
 		/// <param name="src">Source.</param>
 		public static string ToPossessiveCase(this string src)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			if (src.LastChars(1).ToLower() == "s") return src + "'";
 			else return src + "'s";
 		}
@@ -233,17 +266,21 @@ namespace RevStackCore.Extensions
 		/// <param name="src">Source.</param>
 		public static string ToHtmlLink(this string src)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			return "<a href =\"" + src + "\">" + src + "</a>";
 		}
 
-	    /// <summary>
-	    /// Tos the html link.
-	    /// </summary>
-	    /// <returns>The html link.</returns>
-	    /// <param name="src">Source.</param>
-	    /// <param name="label">Label.</param>
+		/// <summary>
+		/// Tos the html link.
+		/// </summary>
+		/// <returns>The html link.</returns>
+		/// <param name="src">Source.</param>
+		/// <param name="label">Label.</param>
 		public static string ToHtmlLink(this string src, string label)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			return "<a href =\"" + src + "\">" + label + "</a>";
 		}
 
@@ -282,6 +319,8 @@ namespace RevStackCore.Extensions
 		/// <param name="src">Source.</param>
 		public static string ToHtmlLineBreak(this string src)
 		{
+			if (string.IsNullOrEmpty(src))
+				return "";
 			src = src.Replace(Environment.NewLine, "<br>");
 			return src;
 		}

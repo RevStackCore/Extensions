@@ -1,10 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="package.json">
-    <Files>
-      <File FileName="RevStackCore.Extensions/RevStackCore.Extensions.csproj" Line="6" Column="43" />
-      <File FileName="package.json" Line="2" Column="37" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
