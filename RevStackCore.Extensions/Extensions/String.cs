@@ -55,7 +55,7 @@ namespace RevStackCore.Extensions
 		{
 			if (string.IsNullOrEmpty(src))
 				return "";
-			return src.Substring(0, n);
+			return src.Substring(n);
 		}
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace RevStackCore.Extensions
 		{
 			if (string.IsNullOrEmpty(src))
 				return "";
-			return src.Substring(src.Length - n);
+			return src.Substring(0,src.Length - n);
 		}
 
 		/// <summary>
