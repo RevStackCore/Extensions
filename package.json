@@ -1,6 +1,6 @@
 {
   "name": "RevStackCore.Extensions",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": ".net core utilities and extension methods",
   "main": "RevStackCore.Extensions.sln",
   "scripts": {
