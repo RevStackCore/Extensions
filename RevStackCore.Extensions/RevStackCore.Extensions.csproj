@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.5</TargetFramework>
     <PackageId>RevStackCore.Extensions</PackageId>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>1.0.5</PackageVersion>
     <Authors>S. Francis</Authors>
     <Description>.net core utilities and extension methods</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
