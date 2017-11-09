@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace RevStackCore.Extensions
@@ -98,7 +99,7 @@ namespace RevStackCore.Extensions
 		{
 			if (string.IsNullOrEmpty(source))
 				return false;
-			var index = source.IndexOf(value);
+			var index = source.IndexOf(value, StringComparison.Ordinal);
 			return (index > -1);
 		}
 
@@ -165,11 +166,53 @@ namespace RevStackCore.Extensions
 			return source.Substring(0, 1).ToLower() + source.Substring(1);
 		}
 
+        /// <summary>
+        /// Tos the quoted string.
+        /// </summary>
+        /// <returns>The quoted string.</returns>
+        /// <param name="source">Source.</param>
+        public static string ToQuotedString(this string source)
+        {
+            if (string.IsNullOrEmpty(source))
+                source = "";
+            string QUOTE = "\"";
+            source = source.Replace("\"", "\"\"");
+            return QUOTE + source + QUOTE;
+        }
+
+        /// <summary>
+        /// Tos the yes no string.
+        /// </summary>
+        /// <returns>The yes no string.</returns>
+        /// <param name="source">If set to <c>true</c> source.</param>
+        public static string ToYesNoString(this bool source)
+        {
+            if (source == true) return "Yes";
+            else return "No";
+        }
+
+        /// <summary>
+        /// Tos the csv string.
+        /// </summary>
+        /// <returns>The csv string.</returns>
+        /// <param name="source">Source.</param>
+        public static string ToCsvString(this string[] source)
+        {
+            string separator = ",";
+            StringBuilder sb = new StringBuilder();
+            foreach (string s in source)
+            {
+                sb.Append(s.ToQuotedString() + separator);
+            }
+            string result = sb.ToString();
+            return result.TrimLastChar();
+        }
+
 		/// <summary>
 		/// Tos the wrapped in quotes.
 		/// </summary>
 		/// <returns>The wrapped in quotes.</returns>
-		/// <param name="value">Value.</param>
+		/// <param name="source">Value.</param>
 		public static string ToWrappedInQuotes(this string source)
 		{
 			if (string.IsNullOrEmpty(source))
@@ -181,7 +224,7 @@ namespace RevStackCore.Extensions
 		/// Tos the wrapped in single quotes.
 		/// </summary>
 		/// <returns>The wrapped in single quotes.</returns>
-		/// <param name="value">Value.</param>
+		/// <param name="source">Value.</param>
 		public static string ToWrappedInSingleQuotes(this string source)
 		{
 			if (string.IsNullOrEmpty(source))
@@ -324,6 +367,98 @@ namespace RevStackCore.Extensions
 			src = src.Replace(Environment.NewLine, "<br>");
 			return src;
 		}
+
+        /// <summary>
+        /// Tos the dollar currency.
+        /// </summary>
+        /// <returns>The dollar currency.</returns>
+        /// <param name="src">Source.</param>
+        public static string ToDollarCurrency(this decimal src)
+        {
+            var curr = String.Format("{0:N}", src);
+            curr = "$" + curr;
+            return curr;
+        }
+
+        /// <summary>
+        /// Tos the short date string.
+        /// </summary>
+        /// <returns>The short date string.</returns>
+        /// <param name="src">Source.</param>
+        public static string ToShortDateString(this DateTime src)
+        {
+            return src.ToString("d");
+        }
+        /// <summary>
+        /// Tos the long date string.
+        /// </summary>
+        /// <returns>The long date string.</returns>
+        /// <param name="src">Source.</param>
+        public static string ToLongDateString(this DateTime src)
+        {
+            return src.ToString("D");
+        }
+        /// <summary>
+        /// Tos the short time string.
+        /// </summary>
+        /// <returns>The short time string.</returns>
+        /// <param name="src">Source.</param>
+        public static string ToShortTimeString(this DateTime src)
+        {
+            return src.ToString("t");
+        }
+        /// <summary>
+        /// Tos the long time string.
+        /// </summary>
+        /// <returns>The long time string.</returns>
+        /// <param name="src">Source.</param>
+        public static string ToLongTimeString(this DateTime src)
+        {
+            return src.ToString("T");
+        }
+
+        /// <summary>
+        /// Tos the date summary.
+        /// </summary>
+        /// <returns>The date summary.</returns>
+        /// <param name="date">Date.</param>
+        public static string ToDateSummary(this DateTime? date)
+        {
+            var src = Convert.ToDateTime(date);
+            int month = src.Month;
+            int day = src.Day;
+            int year = src.Year;
+            string strMonth = month.ToFullMonthName();
+            return strMonth + " " + day.ToString() + ", " + year.ToString();
+        }
+
+        /// <summary>
+        /// Tos the date summary.
+        /// </summary>
+        /// <returns>The date summary.</returns>
+        /// <param name="date">Date.</param>
+        public static string ToDateSummary(this DateTime date)
+        {
+            var src = Convert.ToDateTime(date);
+            int month = src.Month;
+            int day = src.Day;
+            int year = src.Year;
+            string strMonth = month.ToFullMonthName();
+            return strMonth + " " + day.ToString() + ", " + year.ToString();
+        }
+
+        /// <summary>
+        /// Tos the short date summary.
+        /// </summary>
+        /// <returns>The short date summary.</returns>
+        /// <param name="src">Source.</param>
+        public static string ToShortDateSummary(this DateTime src)
+        {
+            int month = src.Month;
+            int day = src.Day;
+            string strMonth = month.ToFullMonthName();
+            return strMonth + " " + day.ToString();
+        }
 
 		/// <summary>
 		/// Tos the name of the month.
