@@ -35,6 +35,17 @@ namespace RevStackCore.Extensions
 			var value = info.GetValue(src, null);
 			return (!Equals(value, default(TKey)));
 		}
+
+        /// <summary>
+        /// Ises the default value.
+        /// </summary>
+        /// <returns><c>true</c>, if default value was ised, <c>false</c> otherwise.</returns>
+        /// <param name="value">Value.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        public static bool IsDefaultValue<T>(this T value)
+        {
+            return EqualityComparer<T>.Default.Equals(value, default(T));
+        }
 	}
 
 	/// <summary>
