@@ -460,6 +460,11 @@ namespace RevStackCore.Extensions
             return strMonth + " " + day.ToString();
         }
 
+        public static string ToLongFormattedDateTimeString(this DateTime dt)
+        {
+            return String.Format("{0:MM/dd/yyyy HH:mm:ss}", dt);
+        }
+
 		/// <summary>
 		/// Tos the name of the month.
 		/// </summary>
